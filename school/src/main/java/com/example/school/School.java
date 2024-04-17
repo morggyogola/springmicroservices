@@ -1,4 +1,4 @@
-package com.example.student;
+package com.example.school;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -11,24 +11,20 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Table(name = "students")
-public class Student {
+@Table(name = "schools")
+public class School {
 
     @Id
-    @Column(name = "userId")
+    @Column(name = "schoolId")
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id;
 
-    @Column(name = "firstName")
-    private String firstName;
-
-    @Column(name = "lastName")
-    private String lastName;
+    @Column(name = "name")
+    private String name;
 
     @Column(name = "email")
     private  String email;
 
-    @Column(name = "schoolId")
-    private Integer schoolId;
+
 
 }
