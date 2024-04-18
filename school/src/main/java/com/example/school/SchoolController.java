@@ -13,15 +13,24 @@ import java.util.List;
 public class SchoolController {
 
     private final SchoolService service;
+
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void save(@RequestBody School school){
+    public void save(@RequestBody School school) {
         service.saveSchool(school);
     }
 
     @GetMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<List<School>> findAll(){
-        return ResponseEntity.ok(service.findAllSchools());}
+    public ResponseEntity<List<School>> findAll() {
+        return ResponseEntity.ok(service.findAllSchools());
+    }
+
+    @GetMapping("/with-students/{school-id}")
+    public ResponseEntity<FullSchoolResponse> findAllSchools(
+            @PathVariable("school-id") Integer schoolId
+    ) {
+        return ResponseEntity.ok(service.findSchoolsWithStudents(schoolId));
+    }
 
 }
