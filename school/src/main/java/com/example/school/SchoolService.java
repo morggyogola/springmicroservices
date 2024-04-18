@@ -1,5 +1,6 @@
 package com.example.school;
 
+import com.example.school.client.StudentClient;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -10,6 +11,8 @@ import java.util.List;
 public class SchoolService {
 
     private final SchoolRepository repository;
+
+    private StudentClient client;
 
     public void saveSchool(School school) {
         repository.save(school);
@@ -26,7 +29,7 @@ public class SchoolService {
                         .name("NOT_FOUND")
                         .email("NOT_FOUND")
                         .build());
-        var students = null; //find all students from the student micro-service
+        var students = client.findAllStudentsBySchool(schoolId); //find all students from the student micro-service
         return null;
     }
 }
