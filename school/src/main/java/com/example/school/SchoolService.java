@@ -12,7 +12,7 @@ public class SchoolService {
 
     private final SchoolRepository repository;
 
-    private StudentClient client;
+    private final StudentClient client;
 
     public void saveSchool(School school) {
         repository.save(school);
@@ -30,6 +30,10 @@ public class SchoolService {
                         .email("NOT_FOUND")
                         .build());
         var students = client.findAllStudentsBySchool(schoolId); //find all students from the student micro-service
-        return null;
+        return FullSchoolResponse.builder()
+                .name(school.getName())
+                .email(school.getEmail())
+                .students(students)
+                .build();
     }
 }
